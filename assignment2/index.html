@@ -1,43 +1,43 @@
 <!doctype html>
-<html lang="en" ng-app="shoppingListApp">
+<html lang="en" ng-app="shoppingListCheckOff">
   <head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
   </head>
-  <body ng-controller = "ShoppingListController as shoppingListCtrl">
+  <body>
     <div class="container">
     <h1>Shopping List Check Off</h1>
 
     <div class="row">
 
       <!-- To Buy List -->
-      <div class="col-md-6">
+      <div class="col-md-6" ng-controller = "ToBuyController as toBuyCtrl">
        <h2>To Buy:</h2>
        <ul>
-         <li ng-repeat = "item in shoppingListCtrl.shoppingItems">
+         <li ng-repeat = "item in toBuyCtrl.toBuyItems">
            Buy {{item.quantity}} {{item.itemName}}
-          <button class="btn btn-default" ng-click="shoppingListCtrl.buyItem($index)">
+          <button class="btn btn-default" ng-click="toBuyCtrl.buyItem($index)">
             <span class="glyphicon glyphicon-ok"></span> Bought
           </button>
         </li>
        </ul>
-       <div class="emptyMessage" ng-show="shoppingListCtrl.shoppingItems.length === 0">Everything is bought!</div>
+       <div class="emptyMessage" ng-show="toBuyCtrl.toBuyItems.length === 0">Everything is bought!</div>
       </div>
 
       <!-- Already Bought List -->
-      <div class="col-md-6">
+      <div class="col-md-6" ng-controller = "AlreadyBoughtController as boughtCtrl">
        <h2>Already Bought:</h2>
        <ul>
-         <li ng-repeat = "item in shoppingListCtrl.boughtItems">
+         <li ng-repeat = "item in boughtCtrl.boughtItems">
            Bought {{item.quantity}} {{item.itemName}}
-           <button class="btn btn-default" ng-click="shoppingListCtrl.removeItem($index)">
+           <button class="btn btn-default" ng-click="boughtCtrl.removeItem($index)">
              <span class="glyphicon glyphicon-ok"></span> Remove
            </button>
          </li>
        </ul>
-       <div class="emptyMessage" ng-show="shoppingListCtrl.boughtItems.length === 0">Nothing bought yet.</div>
+       <div class="emptyMessage" ng-show="boughtCtrl.boughtItems.length === 0">Nothing bought yet.</div>
       </div>
     </div>
   </div>
